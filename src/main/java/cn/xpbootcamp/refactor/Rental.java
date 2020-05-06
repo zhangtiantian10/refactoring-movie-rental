@@ -16,11 +16,13 @@ public class Rental {
         return movie;
     }
 
-    int getDaysRented() {
-        return daysRented;
-    }
-
     double getAmount() {
         return amount;
+    }
+
+    int getFrequentRenterPoints() {
+        int additional = movie.getPriceCode() == Movie.NEW_RELEASE
+                && this.daysRented > 1 ? 1 : 0;
+        return 1 + additional;
     }
 }

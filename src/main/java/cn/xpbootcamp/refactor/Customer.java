@@ -15,6 +15,8 @@ public class Customer {
 
     void addRental(Rental rental) {
         rentals.addElement(rental);
+        this.frequentRenterPoints += rental.getFrequentRenterPoints();
+        this.totalAmount += rental.getAmount();
     }
 
     public String getName() {
@@ -27,15 +29,8 @@ public class Customer {
         StringBuilder result = this.rentals
             .stream()
             .reduce(initStringBuilder, (partialResult, current) -> {
-                int daysRented = current.getDaysRented();
                 Movie movie = current.getMovie();
-                double thisAmount = current.getAmount();
-
-                this.frequentRenterPoints++;
-                if ((movie.getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
-                    this.frequentRenterPoints++;
-
-                this.totalAmount += thisAmount;
+                double thisAmount =  current.getAmount();;
 
                 return  partialResult.append("\t")
                         .append(movie.getTitle())
