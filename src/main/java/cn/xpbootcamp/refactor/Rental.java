@@ -4,10 +4,12 @@ public class Rental {
 
     private Movie movie;
     private int daysRented;
+    private double amount;
 
     Rental(Movie movie, int daysRented) {
         this.movie = movie;
         this.daysRented = daysRented;
+        this.amount = movie.getTotalPrice(daysRented);
     }
 
     Movie getMovie() {
@@ -18,4 +20,7 @@ public class Rental {
         return daysRented;
     }
 
+    double getAmount() {
+        return amount;
+    }
 }
