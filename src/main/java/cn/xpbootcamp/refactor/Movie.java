@@ -21,4 +21,25 @@ public class Movie {
     String getTitle() {
         return title;
     }
+
+    double getTotalPrice(int days) {
+        double amount = 0d;
+        switch (this.priceCode) {
+            case HISTORY:
+                amount += 2;
+                if (days > 2)
+                    amount += (days - 2) * 1.5;
+                break;
+            case NEW_RELEASE:
+                amount += days * 3;
+                break;
+            case CAMPUS:
+                amount += 1.5;
+                if (days > 3)
+                    amount += (days - 3) * 1.5;
+                break;
+        }
+
+        return amount;
+    }
 }
